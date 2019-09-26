@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>欢迎登录</title>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            #phone, button {
+                height: 30px;
+            }
+            #verify_code, #verify_code_info, #uname, #passwd1, #passwd2, #email {
+                height: 30px;
+            }
+
+            #verify_code_info {
+                width: 80px;
+                margin-left: 5px;
+                
+            }
+
+            button {
+                margin-left: 5px;
+                padding: 0 5px;
+                width: 50px;
+                height: 34px;
+                position: relative;
+                top: 1px;
+            }
+
+            #uname_tips, #passwd1_tips, #passwd2_tips, #email_tips{
+                margin-left: 5px;
+                width: auto;
+            }
+
+            #reg_form {
+                width: 400px;
+                height: auto;
+                background: skyblue;
+                position: relative;
+                top: 100px;
+                left:50%;
+                margin-left: -220px;
+                padding: 10px 20px;
+            }
+
+            p.row {
+                display: block;
+                height: 50px;
+            }
+
+            label {
+                display: inline-block;
+                width :80px;
+                height: 34px;
+                position: relative;
+                top: -4px;
+            }
+
+            a{
+                margin-right: 5px;
+            }
+        </style>
+        <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+        <script>
+            $(function() {
+                $("#logout").click(function() {
+                    $.ajax({
+                        url: "/logout",
+                        success: function(data) {
+                            if (data["err"] === 0) {
+                                alert("注销成功！");
+                                location.href = "/login";
+                            }
+                        }
+                    })
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="welcome">
+            <span>{{ uname }}，你好！</span><a id="mb" href="/message_board">留言板</a><a id="logout" href="javascript:;">残忍离开</a>
+        </div>
+    </body>
+</html>

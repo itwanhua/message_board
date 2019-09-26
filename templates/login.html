@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>欢迎登录</title>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            #phone, button {
+                height: 30px;
+            }
+            #verify_code, #verify_code_info, #uname, #passwd1, #passwd2, #email {
+                height: 30px;
+            }
+
+            #verify_code_info {
+                width: 80px;
+                margin-left: 5px;
+                
+            }
+
+            button {
+                margin-left: 5px;
+                padding: 0 5px;
+                width: 50px;
+                height: 34px;
+                position: relative;
+                top: 1px;
+            }
+
+            #uname_tips, #passwd1_tips{
+                margin-left: 5px;
+                width: auto;
+            }
+
+            #login_form {
+                width: 400px;
+                height: auto;
+                background: skyblue;
+                position: relative;
+                top: 100px;
+                left:50%;
+                margin-left: -220px;
+                padding: 10px 20px;
+            }
+
+            p.row {
+                display: block;
+                height: 50px;
+            }
+
+            label {
+                display: inline-block;
+                width :80px;
+                height: 34px;
+                position: relative;
+                top: -4px;
+            }
+        </style>
+        <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+    </head>
+    <body>
+        {% if login_fail %}
+            <script>
+                alert("用户名或密码错误，请重新登陆！");
+            </script>
+        {% endif %}
+
+        <div id="login_form">
+            <form action="/login", method="POST">
+                <p class="row"><label>用户名：</label><input type="text" id="uname" name="uname" placeholder="用户名" autofocus><span id="uname_tips"></span></p>
+                <p class="row"><label>密码：</label><input type="password" id="passwd1" name="passwd1" placeholder="密码"><span id="passwd1_tips"></span></p>
+                <button type="submit" id="submit">登录</button>
+            </form>
+        </div>
+    </body>
+</html>

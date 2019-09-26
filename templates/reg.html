@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>欢迎注册</title>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            #phone, button {
+                height: 30px;
+            }
+            #verify_code, #verify_code_info, #uname, #passwd1, #passwd2, #email {
+                height: 30px;
+            }
+
+            #verify_code_info {
+                width: 80px;
+                margin-left: 5px;
+                
+            }
+
+            button {
+                margin-left: 5px;
+                padding: 0 5px;
+                width: 50px;
+                height: 34px;
+                position: relative;
+                top: 1px;
+            }
+
+            #uname_tips, #passwd1_tips, #passwd2_tips, #email_tips{
+                margin-left: 5px;
+                width: auto;
+            }
+
+            #reg_form {
+                width: 400px;
+                height: auto;
+                background: skyblue;
+                position: relative;
+                top: 100px;
+                left:50%;
+                margin-left: -220px;
+                padding: 10px 20px;
+            }
+
+            p.row {
+                display: block;
+                height: 50px;
+            }
+
+            label {
+                display: inline-block;
+                width :80px;
+                height: 34px;
+                position: relative;
+                top: -4px;
+            }
+        </style>
+        <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/common.js') }}"></script>
+    </head>
+    <body>
+        <div id="reg_form">
+            <form action="/reg", method="POST">
+                <p class="row"><label>用户名：</label><input type="text" id="uname" name="uname" placeholder="用户名" autofocus><span id="uname_tips"></span></p>
+                <p class="row"><label>密码：</label><input type="password" id="passwd1" name="passwd1" placeholder="密码"><span id="passwd1_tips"></span></p>
+                <p class="row"><label>确认密码：</label><input type="password" id="passwd2" name="passwd2" placeholder="确认密码"><span id="passwd2_tips"></span></p>
+                <p class="row"><label>邮箱：</label><input type="email" id="email" name="email" placeholder="邮箱"><span id="email_tips"></span></p>
+                <p class="row"><label>手机号：</label><input type="text" id="phone" name="phone" placeholder="手机号"><button type="button" id="send_sms_code">发送</button><span id="phone_tips"></span></p>
+                <p class="row"><label>验证码：</label><input type="text" id="verify_code" name="verify_code" placeholder="验证码" disabled><span id="code_tips"></span></p>
+                <p><button type="submit" id="submit">注册</button></p>
+            </form>
+        </div>
+    </body>
+</html>

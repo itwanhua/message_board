@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>欢迎注册</title>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            button {
+                margin-left: 5px;
+                padding: 0 5px;
+                width: 50px;
+                height: 34px;
+                position: relative;
+                top: 1px;
+            }
+
+            p.row {
+                display: block;
+                height: 50px;
+            }
+
+            label {
+                display: inline-block;
+                width :80px;
+                height: 34px;
+                position: relative;
+                top: -4px;
+            }
+
+            .message {
+                margin-top: 10px;
+                padding: 10px;
+                border-bottom: 1px dotted black
+            }
+
+            .message:last-child {
+                border-bottom: none;
+            }
+
+            .uname {
+                color: skyblue;
+            }
+
+            .pub_time {
+                margin-left: 50px;
+                color: blue;
+            }
+        </style>
+        <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+    </head>
+    <body>
+        {% if session.get("user_info") %}
+        <div id="mb_form">
+            <form action="/message_board", method="POST">
+                <p class="row"><label>留言：</label><textarea name="content" id="content" placeholder="请输入留言内容"></textarea><button type="submit" id="verify_code">发布</button></p>
+            </form>
+        </div>
+        {% else %}
+        <a href="/login">想留言就去登录吧！</a>
+        {% endif %}
+        <hr>
+        {% for m in messages %}
+            <div class="message">
+                <div><span class="uname">{{ m[0] }}</span><span class="pub_time">{{ m[1] }}</span></div>
+                <p class="content">{{ m[2] }}</p>
+            </div>
+        {% endfor %}
+    </body>
+</html>
